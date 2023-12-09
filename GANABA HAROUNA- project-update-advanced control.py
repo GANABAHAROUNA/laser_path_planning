@@ -128,8 +128,10 @@ class DXFEditorApp(tk.Tk):
         laser_data_path = filedialog.asksaveasfilename(
             defaultextension = ".txt",
             filetypes=[("Text files", "*.txt")],
-            initialfile = default_filename
+            # initialfile = default_filename
         )
+        print(laser_data_path)
+        
         if laser_data_path:
             with open(laser_data_path, 'w') as file:
                 for coordinates in self.data:
@@ -256,12 +258,13 @@ class DXFEditorApp(tk.Tk):
         path_coordinates = list ( zip ( self.x_coords, self.y_coords ) )
         
         #save path coordinates to a text file
-        point_txt = "output.txt"
-        with open(point_txt, 'w') as file:
-            for coordinates in path_coordinates:
-                line = ' '.join( map(str, coordinates ) )
-                file.write( line + '\n' )
-        print(f"A laser data has been written to { point_txt } " )
+        # point_txt = "output.txt"
+        # with open(point_txt, 'w') as file:
+        #     for coordinates in path_coordinates:
+        #         line = ' '.join( map(str, coordinates ) )
+        #         file.write( line + '\n' )
+        # print(f"A laser data has been written to { point_txt } " )
+        self.data = path_coordinates
         
     def plot_dxf(self, file_path):
         if file_path:
@@ -325,9 +328,9 @@ class DXFEditorApp(tk.Tk):
 
 #exceute the program
 if __name__ == '__main__':
-    file_name = "output.txt"
-    data = np.loadtxt(file_name)
-    execute = DXFEditorApp(data=data)
+    # file_name = "output.txt"
+    # data = np.loadtxt(file_name)
+    execute = DXFEditorApp()
     execute.protocol("WM_DELETE_WINDOW", execute.end_simulation)               # Set the close event to end_simulation
     execute.mainloop()
 
