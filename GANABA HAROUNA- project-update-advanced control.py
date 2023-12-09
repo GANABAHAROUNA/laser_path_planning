@@ -256,14 +256,6 @@ class DXFEditorApp(tk.Tk):
         self.x_coords = np.concatenate( ( x11, x12, x13, x14, x21, x22, x23, x31, x32, x33, x34, x35, x41, x42, x43, x44, x45, x46) )   # the definition of the path along x axis
         self.y_coords = np.concatenate( ( y11, y12, y13, y14, y21, y22, y23, y31, y32, y33, y34, y35, y41, y42, y43, y44, y45, y46) )   # the definition of the path along y axis
         path_coordinates = list ( zip ( self.x_coords, self.y_coords ) )
-        
-        #save path coordinates to a text file
-        # point_txt = "output.txt"
-        # with open(point_txt, 'w') as file:
-        #     for coordinates in path_coordinates:
-        #         line = ' '.join( map(str, coordinates ) )
-        #         file.write( line + '\n' )
-        # print(f"A laser data has been written to { point_txt } " )
         self.data = path_coordinates
         
     def plot_dxf(self, file_path):
@@ -328,8 +320,6 @@ class DXFEditorApp(tk.Tk):
 
 #exceute the program
 if __name__ == '__main__':
-    # file_name = "output.txt"
-    # data = np.loadtxt(file_name)
     execute = DXFEditorApp()
     execute.protocol("WM_DELETE_WINDOW", execute.end_simulation)               # Set the close event to end_simulation
     execute.mainloop()
